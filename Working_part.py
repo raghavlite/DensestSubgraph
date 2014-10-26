@@ -1,110 +1,95 @@
+# -*- coding: utf-8 -*-
+# <nbformat>3.0</nbformat>
 
-# coding: utf-8
-
-# In[242]:
-
-get_ipython().magic(u'matplotlib inline')
+# <codecell>
 
 
-# In[243]:
+
+# <codecell>
 
 import pylab as py
 
-
-# In[244]:
+# <codecell>
 
 import numpy as np
 
-
-# In[245]:
+# <codecell>
 
 from graph_tool.all import *
 
 
-### Creating a random Undirected Graph for evaluation
-
-# In[246]:
-
-g=Graph(directed=False)
 
 
-# In[247]:
 
-for i in range(0,5):
-    g.add_vertex() ;
-    print "added no",i;
-"End" 
+#################################################################Set the graph vertices n_g;;######################################################################################################################################
+n_g=22;
 
+# <codecell>
 
-# In[248]:
+# g=Graph(directed=False)
 
-g.add_edge(g.vertex(0), g.vertex(1))
-g.add_edge(g.vertex(1), g.vertex(2))
-g.add_edge(g.vertex(2), g.vertex(3))
-g.add_edge(g.vertex(4), g.vertex(3))
-g.add_edge(g.vertex(1), g.vertex(4))
-g.add_edge(g.vertex(2), g.vertex(4))
+# # <codecell>
 
+# for i in range(0,5):
+#     g.add_vertex() ;
+#     print "added no",i;
+# "End" 
 
-# In[249]:
+# # <codecell>
 
-graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
+# g.add_edge(g.vertex(0), g.vertex(1))
+# g.add_edge(g.vertex(1), g.vertex(2))
+# g.add_edge(g.vertex(2), g.vertex(3))
+# g.add_edge(g.vertex(4), g.vertex(3))
+# g.add_edge(g.vertex(1), g.vertex(4))
+# g.add_edge(g.vertex(2), g.vertex(4))
 
+# # <codecell>
 
-# In[250]:
+# graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
 
-g.add_edge(g.vertex(1), g.vertex(3))
+# # <codecell>
 
+# g.add_edge(g.vertex(1), g.vertex(3))
 
-# In[251]:
+# # <codecell>
 
-graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
+# graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
 
-
-# In[252]:
-
-
-g.add_vertex(5);
-
-
-# In[253]:
-
-graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
+# # <codecell>
 
 
-# In[254]:
+# g.add_vertex(5);
 
-g.add_edge(g.vertex(7),g.vertex(4));
+# # <codecell>
 
+# graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
 
-# In[255]:
+# # <codecell>
 
-g.add_edge(g.vertex(8),g.vertex(3));
+# g.add_edge(g.vertex(7),g.vertex(4));
 
+# # <codecell>
 
-# In[256]:
+# g.add_edge(g.vertex(8),g.vertex(3));
 
-g.add_edge(g.vertex(2),g.vertex(5));
+# # <codecell>
 
+# g.add_edge(g.vertex(2),g.vertex(5));
 
-# In[257]:
+# # <codecell>
 
-g.add_edge(g.vertex(6),g.vertex(9));
+# g.add_edge(g.vertex(6),g.vertex(9));
 
+# # <codecell>
 
-# In[258]:
+# g.add_edge(g.vertex(5),g.vertex(6));
 
-g.add_edge(g.vertex(5),g.vertex(6));
+# # <codecell>
 
+# graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
 
-# In[259]:
-
-graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=18,output_size=(200, 200), output="two-nodes.png")
-
-
-### Subroutine used by maxdsubgraph for modification of flow capacities
-
-# In[260]:
+# # <codecell>
 
 def modifycap(g,s,t,go,gn,cap):
     
@@ -119,10 +104,7 @@ def modifycap(g,s,t,go,gn,cap):
         
         
 
-
-### Subroutine which filters off unwanted nodes using the Maxflow min cut theoram
-
-# In[266]:
+# <codecell>
 
 def maxdsubgraph(g,s,t,m,n,cap):
     go=0.0;
@@ -130,7 +112,7 @@ def maxdsubgraph(g,s,t,m,n,cap):
     u=m;
     b=1.0/(n*(n-1));
     res=-123;
-
+    
     print "Inside MaxdSubgraph";
     
     
@@ -191,10 +173,7 @@ def maxdsubgraph(g,s,t,m,n,cap):
 
 "end func"
 
-
-### Worker Function : Sets up thr priliminary G graph with dual edges and capacity 1
-
-# In[262]:
+# <codecell>
 
 def dsg(g,m,n):
     
@@ -275,35 +254,138 @@ def dsg(g,m,n):
     
     g.set_vertex_filter(cap2,inverted=False);
     
-    print "\n\n\n\nDensest Subgraph is ::";
-    
     graph_draw(g, vertex_text=g.vertex_index, vertex_font_size=20,output_size=(500, 500), output="two-nodes.png");
     
     
-    print "Density is equal to",(g.num_edges()*1.0)/g.num_vertices();
-    
+    print "Density is equal to",g.num_edges()*1.0/g.num_vertices();
+    return (g.num_edges()*1.0)/g.num_vertices();
 
 "end def"
 
-
-### Densest Subgraph Function used on the graph created
-
-# In[263]:
-
-dsg(g,g.num_edges(),g.num_vertices());
-
-
-# In[263]:
+# <codecell>
 
 
 
-
-# In[122]:
-
+# <codecell>
 
 
+# <codecell>
 
-# In[ ]:
+from numpy.random import *
 
+# <codecell>
+
+def corr(a, b):
+    if a == b:
+        return 0.999
+    else:
+        return 0.001
+    "End if"
+"End def"
+
+# <codecell>
+
+g1, bm = random_graph(n_g, lambda: poisson(10), directed=False,model="blockmodel-traditional",block_membership=lambda: randint(1,10),vertex_corr=corr)
+
+# <codecell>
+
+graph_draw(g1, vertex_fill_color=bm, edge_color="black", output="blockmodel.pdf")
+
+# <codecell>
+
+
+
+
+
+
+
+loci=0;
+
+# <codecell>
+
+def combi(g,p,n,fil) :
+
+    if (n==p) :
+        global loci;
+        print loci;
+        loci+=1;
+        g.set_vertex_filter(fil,inverted=False);
+        if (g.num_vertices()==0) :
+            g.clear_filters();
+            return 0;
+        
+        d=(g.num_edges()*1.0)/g.num_vertices();
+        g.clear_filters();
+        return d;
+    "End if"
+
+
+    fil[g.vertex(p)]=0;
+    k=combi(g,p+1,n,fil);
+
+    fil[g.vertex(p)]=1;
+    l=combi(g,p+1,n,fil);
+
+
+    if k>l :
+        return k;
+    else :
+        return l; 
+    "end if"
+        
+"end def"
+
+
+# <codecell>
+
+def checker(g) :
+    
+    m=g.num_edges();
+    n=g.num_vertices();
+
+
+
+
+    d=(m*1.0)/n;
+
+
+    fil=g.new_vertex_property("bool");
+
+    for i in range(0,n):
+        fil[g.vertex(i)]=1;
+
+    "end for"
+    
+
+    max2=combi(g,0,n,fil);
+    
+    print "Max Density found is",max2;
+
+
+
+"end def"
+
+# <codecell>
+
+
+max1=dsg(g1,g1.num_edges(),g1.num_vertices());
+
+g1.clear_filters();
+
+checker(g1);
+
+
+
+print "Algo Max",max1;
+# <codecell>
+
+
+# <codecell>
+
+
+# <codecell>
+
+
+# <codecell>
 
 
