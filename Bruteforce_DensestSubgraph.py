@@ -11,7 +11,7 @@ import pylab as py
 
 # <codecell>
 
-import numpy as np
+from numpy import *
 
 # <codecell>
 
@@ -132,7 +132,7 @@ def maxdsubgraph(g,s,t,m,n,cap):
         
         modifycap(g,s,t,go,gn,cap);
         
-        print "yeah done with while";
+        
         
         #"""
         
@@ -141,7 +141,8 @@ def maxdsubgraph(g,s,t,m,n,cap):
         #s=g.vertex(m);
         #t=g.vertex(m+1);
         
-        
+        print "into max flow";
+
         res23 = push_relabel_max_flow(g, s, t, cap);
         
         #"""
@@ -149,7 +150,7 @@ def maxdsubgraph(g,s,t,m,n,cap):
         #
         
         g.set_vertex_filter(part, inverted=False);
-        
+        print "out of max flow";
         
         
         
@@ -163,6 +164,12 @@ def maxdsubgraph(g,s,t,m,n,cap):
             res=part;
         "end if"
         go=gn;
+
+        
+        print "Density is equal to",l;
+        
+        print "yeah done with while";
+
         g.clear_filters();
         #"""
     "end while"
@@ -239,6 +246,8 @@ def dsg(g,m,n):
     for v in G.vertices():
         
         if v==s:
+            "blah";
+        elif v==t :
             "blah";
                        
         else :
@@ -370,9 +379,9 @@ def checker(g) :
 
 max1=dsg(g1,g1.num_edges(),g1.num_vertices());
 
-g1.clear_filters();
+# # g1.clear_filters();
 
-checker(g1);
+# checker(g1);
 
 
 
