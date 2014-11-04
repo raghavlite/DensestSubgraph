@@ -19,3 +19,27 @@ Now exploring the Amazon Dataset for any similarities
 There seemed to be some difference in the first trial 
 Rechecking...
 
+
+Yes max densities and Top communities closely match in the amazon dataset
+
+
+Densities of top communities 
+
+[ 4.32142857, 4.43548387, 4.44680851, 4.44680851, 4.44680851, 4.44680851, 4.5, 4.50847458,4.56060606, 4.56060606]
+
+
+
+and the Densest subgraph is 4.804123
+
+this got quite close here
+
+
+
+
+
+
+
+
+
+
+
