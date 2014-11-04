@@ -72,6 +72,37 @@ edgep
 # In[ ]:
 
 
+print edgep;
+
+for i in range(0,m):
+    if (edgep[i,0]>max1) :
+        max1=edgep[i,0];
+    "end if"
+     
+    if (edgep[i,1]>max1) : 
+        max1=edgep[i,1];
+    "end if"
+    print "compting max vretex",i; 
+
+"end for"
+n=max1+1;
+
+n;
+g=Graph(directed=False);
+
+
+g.add_vertex(max1+1);
+
+
+
+
+
+
+
+for i in range(0,m):
+    g.add_edge(g.vertex(edgep[i,0]),g.vertex(edgep[i,1]));
+    print "adding edge v",i;
+"end for"
 
 
 # In[ ]:
@@ -186,6 +217,7 @@ for j in range(0,10):
 
 # In[89]:
 
+j=0;
 for line in f:
     int_list = [int(i) for i in line.split()];
     
@@ -203,8 +235,8 @@ for line in f:
         cap2[g.vertex(k)]=False;
     "end for" 
     g.clear_filters();
-    
-    
+    print j;
+    j++;
 "end for"
 
 

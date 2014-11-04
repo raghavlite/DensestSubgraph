@@ -30,7 +30,7 @@ def modifycap(g,s,t,go,gn,cap):
 def maxdsubgraph(g,s,t,m,n,cap):
     go=0.0;
     l=0.0;
-    u=64.0787353516;
+    u=m*1.0;
     b=1.0/(n*(n-1));
     res=-123;
     

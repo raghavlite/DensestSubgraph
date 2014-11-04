@@ -1,0 +1,21 @@
+Explored the DBLP DataSet to find any relation between communities and densest subgraphs
+
+http://snap.stanford.edu/data/com-DBLP.html
+
+but.......
+
+Top ten Densities from given communities were
+[ 9.5 , 10.0, 10.0, 10.26, 10.8, 11.5, 13.0, 13.0, 14.2, 16.0]
+
+Top densities from the densest subgraph algorithm
+[56.56, 53.71, 51.95,....]-rounded to 2 digits
+
+Thus we see a huge contrast between them
+
+
+
+Now exploring the Amazon Dataset for any similarities
+
+There seemed to be some difference in the first trial 
+Rechecking...
+
